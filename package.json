@@ -1,0 +1,17 @@
+{
+  "name": "node-crawler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start":"tsc main.ts && node main.js",
+    "test": "node -v"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "typescript": "^5.3.3"
+  }
+}
