@@ -1,2 +1,3 @@
 # node-crawler
-Crawl website and fetch data
+
+Crawler made with NodeJS
