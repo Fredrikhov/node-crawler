@@ -1,5 +1,5 @@
 import { test, expect } from "@jest/globals";
-import { removeProtocolFromUrl, getUrlFromHTML } from "../crawl";
+import { removeProtocolFromUrl, getUrlFromHTML, crawl } from "../crawl";
 
 test("removeProtocolFromUrl - Remove URL Protocol", () => {
   const input = "https://hovweb.org/path";
@@ -69,6 +69,22 @@ test("getUrlFromHTML - Get Multiple URLs Both Relative And Absolute ", () => {
     "https://hovweb.org/",
     "https://hovweb.org/path2/",
   ];
+  expect(result).toEqual(expected);
+});
+
+test("getUrlFromHTML - Get Multiple Links Remove ", () => {
+  const url = "https://hovweb.org";
+  const input = `<html>
+                  <body>
+                    <ul>
+                      <li><a href=""></a></li>
+                      <li><a href="${url}/"></a></li>
+                      <li><a href="${url}/path2/"></a></li>
+                    </ul>
+                  <body>
+                /html>`;
+  const result = getUrlFromHTML(input, url);
+  const expected = ["https://hovweb.org/", "https://hovweb.org/path2/"];
   expect(result).toEqual(expected);
 });
 

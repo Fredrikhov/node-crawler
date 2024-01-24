@@ -1,8 +1,12 @@
-import { removeProtocolFromUrl, getUrlFromHTML } from "./crawl";
+import { createWriteStream } from "fs";
+import { crawl, removeProtocolFromUrl } from "./crawl";
 
-console.log(
-  getUrlFromHTML(
-    `<html><body><ul><li><a href="https://hovweb.org"></a></li></ul><body></html>`,
-    removeProtocolFromUrl("https://hovweb.org")
-  )
-);
+const main = async (baseURL: string, currentURL: string) => {
+  const craaawl = await crawl(baseURL, currentURL, []);
+  // write output to a file
+  const file = createWriteStream("result.txt");
+  craaawl?.forEach((link) => file.write(`${removeProtocolFromUrl(link)}\n`));
+  return "finished";
+};
+
+main("https://######.no", "https://######.no");
